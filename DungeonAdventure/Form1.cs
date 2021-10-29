@@ -1,4 +1,12 @@
-﻿using System;
+﻿// Dungeon Adventure by James Johnson
+// Choose your own Adventure Game with stats
+
+
+// The Debug System (Code To use it is: 5555) still has some issues but its mostly for debugging so it wont be
+// in the main user experience anyways
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -148,12 +156,7 @@ namespace DungeonAdventure
             {
                 healthLabel.Text = $"x {health.ToString()}";
             }
-            else if (health == 0)
-            {
-                healthLabel.Text = $"x 0";
-                page = 99;
-                DisplayPage();
-            }
+            
             coinsLabel.Text = $"x {coins.ToString()}";
             pageLabel.Text = $"Page {page.ToString()}";
 
@@ -295,7 +298,6 @@ namespace DungeonAdventure
                     hurtSound.Play();
                     displayLabel.Text = "You have a tough fight with the guard, but you had the element of surprise\n\n-1 HP\n+5 Coins";
                     health--;
-                    coins += 5;
                     ContinueScreen();
                     break;
                 case 12:
@@ -501,6 +503,13 @@ namespace DungeonAdventure
             prevStick = stick;
             prevPurchaseHeal = purchaseHeal;
 
+            if (health == 0)
+            {
+                healthLabel.Text = $"x 0";
+                page = 99;
+                DisplayPage();
+            }
+
             DisplayPage();
             UpdateStats();
             if (page == 1) // See skeleton
@@ -531,6 +540,7 @@ namespace DungeonAdventure
             else if (page == 7)
             {
                 page = 11;
+                coins += 5;
             }
             else if (page == 8)
             {
