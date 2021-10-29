@@ -29,7 +29,7 @@ namespace DungeonAdventure
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.components = new System.ComponentModel.Container();
             this.statsTitleLabel = new System.Windows.Forms.Label();
             this.healthLabel = new System.Windows.Forms.Label();
             this.choice1Button = new System.Windows.Forms.Button();
@@ -50,18 +50,12 @@ namespace DungeonAdventure
             this.debugLabel = new System.Windows.Forms.Label();
             this.dartLabel = new System.Windows.Forms.Label();
             this.stickLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.debugImput = new System.Windows.Forms.TextBox();
+            this.submitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.heartIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinIcon)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(126, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(542, 320);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // statsTitleLabel
             // 
@@ -82,7 +76,7 @@ namespace DungeonAdventure
             this.healthLabel.ForeColor = System.Drawing.Color.White;
             this.healthLabel.Location = new System.Drawing.Point(63, 63);
             this.healthLabel.Name = "healthLabel";
-            this.healthLabel.Size = new System.Drawing.Size(57, 23);
+            this.healthLabel.Size = new System.Drawing.Size(75, 22);
             this.healthLabel.TabIndex = 2;
             this.healthLabel.Text = "x 5";
             this.healthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -92,7 +86,7 @@ namespace DungeonAdventure
             this.choice1Button.BackColor = System.Drawing.Color.IndianRed;
             this.choice1Button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.choice1Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.choice1Button.Location = new System.Drawing.Point(126, 368);
+            this.choice1Button.Location = new System.Drawing.Point(164, 456);
             this.choice1Button.Name = "choice1Button";
             this.choice1Button.Size = new System.Drawing.Size(75, 23);
             this.choice1Button.TabIndex = 3;
@@ -105,7 +99,7 @@ namespace DungeonAdventure
             this.choice2Button.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.choice2Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice2Button.ForeColor = System.Drawing.Color.Chartreuse;
-            this.choice2Button.Location = new System.Drawing.Point(126, 423);
+            this.choice2Button.Location = new System.Drawing.Point(164, 511);
             this.choice2Button.Name = "choice2Button";
             this.choice2Button.Size = new System.Drawing.Size(75, 23);
             this.choice2Button.TabIndex = 4;
@@ -117,7 +111,7 @@ namespace DungeonAdventure
             this.choice3Button.BackColor = System.Drawing.Color.Aquamarine;
             this.choice3Button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.choice3Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.choice3Button.Location = new System.Drawing.Point(465, 368);
+            this.choice3Button.Location = new System.Drawing.Point(503, 456);
             this.choice3Button.Name = "choice3Button";
             this.choice3Button.Size = new System.Drawing.Size(75, 23);
             this.choice3Button.TabIndex = 5;
@@ -130,7 +124,7 @@ namespace DungeonAdventure
             this.choice4Button.FlatAppearance.BorderColor = System.Drawing.Color.LightCoral;
             this.choice4Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice4Button.ForeColor = System.Drawing.Color.BlueViolet;
-            this.choice4Button.Location = new System.Drawing.Point(465, 423);
+            this.choice4Button.Location = new System.Drawing.Point(503, 511);
             this.choice4Button.Name = "choice4Button";
             this.choice4Button.Size = new System.Drawing.Size(75, 23);
             this.choice4Button.TabIndex = 6;
@@ -141,7 +135,7 @@ namespace DungeonAdventure
             // 
             this.choice1Label.BackColor = System.Drawing.Color.Transparent;
             this.choice1Label.ForeColor = System.Drawing.Color.White;
-            this.choice1Label.Location = new System.Drawing.Point(219, 353);
+            this.choice1Label.Location = new System.Drawing.Point(257, 441);
             this.choice1Label.Name = "choice1Label";
             this.choice1Label.Size = new System.Drawing.Size(219, 51);
             this.choice1Label.TabIndex = 7;
@@ -186,7 +180,7 @@ namespace DungeonAdventure
             // 
             this.choice2Label.BackColor = System.Drawing.Color.Transparent;
             this.choice2Label.ForeColor = System.Drawing.Color.White;
-            this.choice2Label.Location = new System.Drawing.Point(219, 404);
+            this.choice2Label.Location = new System.Drawing.Point(257, 492);
             this.choice2Label.Name = "choice2Label";
             this.choice2Label.Size = new System.Drawing.Size(219, 51);
             this.choice2Label.TabIndex = 11;
@@ -197,7 +191,7 @@ namespace DungeonAdventure
             // 
             this.choice3Label.BackColor = System.Drawing.Color.Transparent;
             this.choice3Label.ForeColor = System.Drawing.Color.White;
-            this.choice3Label.Location = new System.Drawing.Point(561, 354);
+            this.choice3Label.Location = new System.Drawing.Point(599, 442);
             this.choice3Label.Name = "choice3Label";
             this.choice3Label.Size = new System.Drawing.Size(219, 51);
             this.choice3Label.TabIndex = 12;
@@ -208,7 +202,7 @@ namespace DungeonAdventure
             // 
             this.choice4Label.BackColor = System.Drawing.Color.Transparent;
             this.choice4Label.ForeColor = System.Drawing.Color.White;
-            this.choice4Label.Location = new System.Drawing.Point(561, 409);
+            this.choice4Label.Location = new System.Drawing.Point(599, 497);
             this.choice4Label.Name = "choice4Label";
             this.choice4Label.Size = new System.Drawing.Size(219, 51);
             this.choice4Label.TabIndex = 13;
@@ -219,16 +213,16 @@ namespace DungeonAdventure
             // 
             this.displayLabel.BackColor = System.Drawing.SystemColors.Control;
             this.displayLabel.Font = new System.Drawing.Font("Nexa Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayLabel.Location = new System.Drawing.Point(127, 12);
+            this.displayLabel.Location = new System.Drawing.Point(144, 12);
             this.displayLabel.Name = "displayLabel";
-            this.displayLabel.Size = new System.Drawing.Size(541, 320);
+            this.displayLabel.Size = new System.Drawing.Size(671, 409);
             this.displayLabel.TabIndex = 14;
             this.displayLabel.Text = "Waiting For Text...";
             // 
             // pageLabel
             // 
             this.pageLabel.AutoSize = true;
-            this.pageLabel.Location = new System.Drawing.Point(16, 467);
+            this.pageLabel.Location = new System.Drawing.Point(17, 539);
             this.pageLabel.Name = "pageLabel";
             this.pageLabel.Size = new System.Drawing.Size(50, 16);
             this.pageLabel.TabIndex = 15;
@@ -236,7 +230,7 @@ namespace DungeonAdventure
             // 
             // prevPageButton
             // 
-            this.prevPageButton.Location = new System.Drawing.Point(5, 441);
+            this.prevPageButton.Location = new System.Drawing.Point(5, 513);
             this.prevPageButton.Name = "prevPageButton";
             this.prevPageButton.Size = new System.Drawing.Size(75, 23);
             this.prevPageButton.TabIndex = 16;
@@ -258,7 +252,7 @@ namespace DungeonAdventure
             // debugLabel
             // 
             this.debugLabel.AutoSize = true;
-            this.debugLabel.Location = new System.Drawing.Point(16, 421);
+            this.debugLabel.Location = new System.Drawing.Point(17, 492);
             this.debugLabel.Name = "debugLabel";
             this.debugLabel.Size = new System.Drawing.Size(51, 16);
             this.debugLabel.TabIndex = 18;
@@ -286,12 +280,36 @@ namespace DungeonAdventure
             this.stickLabel.Text = "Stick";
             this.stickLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // toolTip1
+            // 
+            this.toolTip1.ShowAlways = true;
+            this.toolTip1.Tag = "Hello There";
+            // 
+            // debugImput
+            // 
+            this.debugImput.Location = new System.Drawing.Point(5, 514);
+            this.debugImput.Name = "debugImput";
+            this.debugImput.Size = new System.Drawing.Size(100, 22);
+            this.debugImput.TabIndex = 21;
+            // 
+            // submitButton
+            // 
+            this.submitButton.Location = new System.Drawing.Point(10, 539);
+            this.submitButton.Name = "submitButton";
+            this.submitButton.Size = new System.Drawing.Size(75, 23);
+            this.submitButton.TabIndex = 22;
+            this.submitButton.Text = "Submit";
+            this.submitButton.UseVisualStyleBackColor = true;
+            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::DungeonAdventure.Properties.Resources.DungeonBackground;
-            this.ClientSize = new System.Drawing.Size(782, 490);
+            this.ClientSize = new System.Drawing.Size(932, 564);
+            this.Controls.Add(this.submitButton);
+            this.Controls.Add(this.debugImput);
             this.Controls.Add(this.stickLabel);
             this.Controls.Add(this.dartLabel);
             this.Controls.Add(this.debugLabel);
@@ -312,11 +330,9 @@ namespace DungeonAdventure
             this.Controls.Add(this.choice1Button);
             this.Controls.Add(this.healthLabel);
             this.Controls.Add(this.statsTitleLabel);
-            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heartIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinIcon)).EndInit();
             this.ResumeLayout(false);
@@ -325,8 +341,6 @@ namespace DungeonAdventure
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label statsTitleLabel;
         private System.Windows.Forms.Label healthLabel;
         private System.Windows.Forms.Button choice1Button;
@@ -347,6 +361,9 @@ namespace DungeonAdventure
         private System.Windows.Forms.Label debugLabel;
         private System.Windows.Forms.Label dartLabel;
         private System.Windows.Forms.Label stickLabel;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.TextBox debugImput;
+        private System.Windows.Forms.Button submitButton;
     }
 }
 
