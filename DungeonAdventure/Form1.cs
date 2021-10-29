@@ -234,8 +234,8 @@ namespace DungeonAdventure
                     break;
                 case 3:
                     coinSound.Play();
-                    displayLabel.Text = "You managed to successfully fight off the skeleton, and it even dropped some gold!" +
-                        " \n\n+5 Gold";
+                    displayLabel.Text = "You managed to successfully fight off the skeleton, and it even dropped some coins!" +
+                        " \n\n+5 Coins";
                     ContinueScreen();
                     break;
                 case 4:
