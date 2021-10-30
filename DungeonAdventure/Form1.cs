@@ -6,6 +6,14 @@
 // in the main user experience anyways
 
 
+// GUIDE ON HOW TO BEAT THIS BECAUSE ITS REALLY SPECIIFC ON WHAT HAS TO BE DONE
+
+// **SPOILER WARNING**
+
+// Fight Skeleton, Open Chest (Optional, but reccomended), start to bribe guard, but fight instead after. Buy the stick,
+// Answer stick on the riddle behind the locked door (optional). Use stick on guards
+// **SPOILER WARNING**
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +39,7 @@ namespace DungeonAdventure
         bool stick;
         bool purchaseHeal;
 
-        int prevPage;
+        int prevPage; // Saving Previous stats so the back button works
         int prevHealth;
         int prevCoin;
         bool prevGoldenKey;
@@ -47,8 +55,8 @@ namespace DungeonAdventure
         public Form1()
         {
             InitializeComponent();
-            ResetVariables();
-            DisplayPage();
+            ResetVariables(); // Make sure all the variables are set
+            DisplayPage(); // Make sure the page is displayed
             page = 1;
             heartSound = new SoundPlayer(Properties.Resources.heartSound); // Assign the sounds
             coinSound = new SoundPlayer(Properties.Resources.coinSound);
@@ -147,20 +155,20 @@ namespace DungeonAdventure
             Button2Enabled(false);
             Button3Enabled(false);
             Button4Enabled(false);
-            choice1Label.Text = "Continue";
+            choice1Label.Text = "Continue"; // Continue screens are used alot, this is made to make it easier
         }
 
         private void UpdateStats()
         {
-            if (health >= 0)
+            if (health >= 0)  // Update health on stats bar
             {
                 healthLabel.Text = $"x {health.ToString()}";
             }
             
-            coinsLabel.Text = $"x {coins.ToString()}";
+            coinsLabel.Text = $"x {coins.ToString()}"; // Show the coins
             pageLabel.Text = $"Page {page.ToString()}";
 
-            if (goldenKey)
+            if (goldenKey) // Shows the items on the stats bar
             {
                 goldenKeyLabel.Text = "Golden Key";
             }
@@ -187,7 +195,7 @@ namespace DungeonAdventure
                 stickLabel.Text = "";
             }
 
-            if (page == 12)
+            if (page == 12) // Used to update the shop
             {
                 if (coins < 25 || stick)
                 {
@@ -197,16 +205,16 @@ namespace DungeonAdventure
                 {
                     Button2Enabled(false);
                 }
-                if (coins < 5 || purchaseHeal)
-                {
+                if (coins < 5 || purchaseHeal) // purchase heal variable is used to tell when the potion is bought, wouldn't use this if there
+                {                              // were multiple shops since they would conflict but since theres only one and a time limit it should be ok
                     Button1Enabled(false);
                 }
             }
 
-            prevPageButton.Enabled = true;
+            prevPageButton.Enabled = true; // Update stats is only ever called after a choice is made
 
-            if (health < 0)
-            {
+            if (health < 0) // There are times when health may get reduced past 0, anything past there doesn't matter as 0 would cause a game over
+            {               // So It just gets set back to 0
                 health = 0;
             }
 
@@ -222,12 +230,12 @@ namespace DungeonAdventure
                         "\n\n Do you want to fight it?";
                     choice1Label.Text = "Fight";
                     choice2Label.Text = "Sneak Past";
-                    Button2Enabled(true);
+                    Button2Enabled(true); // Calling the stuff to enable / disable, using a method to make this 100x easier
                     Button3Enabled(false);
                     Button4Enabled(false);
                     break;
                 case 2:
-                    heartSound.Play();
+                    heartSound.Play(); // Playing sounds
                     displayLabel.Text = "You managed to successfully sneak past the skeleton, because of that you managed " +
                         "to find a health potion!\n\n+1 HP";
                     ContinueScreen();
@@ -250,11 +258,11 @@ namespace DungeonAdventure
                     displayLabel.Text = $"That was quite risky but it wasn't a trap, or a Mimic. " +
                         $"You found a strange golden key..\n\n+1 Golden Key";
                     ContinueScreen();
-                    goldenKey = true;
+                    goldenKey = true; // using a bool to store whether or not you have a key since you can't get multiple and has less options to mess up
                     break;
                 case 6:
                     proceedSound.Play();
-                    displayLabel.Text = "You did not open the chest, perhaps a smart move";
+                    displayLabel.Text = "You did not open the chest, perhaps a smart move"; // even though its safe, I wanted to add the "perhaps a smart move" part
                     ContinueScreen();
                     break;
                 case 7:
@@ -263,8 +271,8 @@ namespace DungeonAdventure
                     Button2Enabled(true);
                     Button3Enabled(true);
                     Button4Enabled(false);
-                    choice1Label.Text = "Fight them (-?? HP)";
-                    choice2Label.Text = "Bribe Them (-?? Coins)";
+                    choice1Label.Text = "Fight them (-?? HP)"; // The last bit showing the HP loss is to show what each option could lead to, making some think that a different path
+                    choice2Label.Text = "Bribe Them (-?? Coins)"; // would be better even though it almost instantly ends the playthrough
                     choice3Label.Text = "Find another Pathway";
                     break;
                 case 8:
@@ -282,8 +290,8 @@ namespace DungeonAdventure
                     {
                         choice2Label.Text = "Bribe Guard (-10 Coins)";
                     }
-                    choice1Label.Text = "Fight them (-3 HP)";
-                    break;
+                    choice1Label.Text = "Fight them (-3 HP)"; // They deal more damage since the guard was ready to fight if needed,
+                    break;                                      // More coins are also dropped as a reward for a tougher fight, however the lack of coins makes this essential in order to win
                 case 9:
                     hurtSound.Play();
                     displayLabel.Text = "You have a tough fight with the guard, he knew you were there already so you didn't have the element of surprise\n\n-3 HP\n+10 Coins";
@@ -291,24 +299,24 @@ namespace DungeonAdventure
                     break;
                 case 10:
                     proceedSound.Play();
-                    displayLabel.Text = "You give the guard the coins, he lets you pass\n\n-10 Coins";
+                    displayLabel.Text = "You give the guard the coins, he lets you pass\n\n-10 Coins"; // Was originally gonna have the offer be 5 but then he wants 10
                     ContinueScreen();
                     break;
                 case 11:
                     hurtSound.Play();
-                    displayLabel.Text = "You have a tough fight with the guard, but you had the element of surprise\n\n-1 HP\n+5 Coins";
+                    displayLabel.Text = "You have a tough fight with the guard, but you had the element of surprise\n\n-1 HP\n+5 Coins"; // have you take damage but get some coins
                     health--;
                     ContinueScreen();
                     break;
                 case 12:
                     proceedSound.Play();
-                    displayLabel.Text = "You find a traveling Merchant, would you like to buy anything? " +
-                        "\n\n Health Potion (+1 HP) - 5 Coins" +
+                    displayLabel.Text = "You find a traveling Merchant, would you like to buy anything? " + // Game design-wise, bad move to place the shop right after where
+                        "\n\n Health Potion (+1 HP) - 5 Coins" +                                        // people might bribe the guard with 10 coins
                         "\n Poison Dart (One Time Use) - 10 Coins" +
-                        "\n Stick (One Time Use) - 25 Coins";
+                        "\n Stick (One Time Use) - 25 Coins"; // A stick being powerful is an on-going joke I always have with whatever im making
                     ContinueScreen();
                     Button1Enabled(false);
-                    if (coins >= 5) // Check you have enough to buy
+                    if (coins >= 5) // Check you have enough to buy, and only enable the buttons at that point
                     {
                         Button1Enabled(true);
                     }
@@ -332,7 +340,7 @@ namespace DungeonAdventure
                     ContinueScreen();
                     Button1Enabled(false);
                     Button2Enabled(true);
-                    if (goldenKey)
+                    if (goldenKey) // only allow the door to be opened if you have the key
                     {
                         Button1Enabled(true);
                     }
@@ -341,7 +349,7 @@ namespace DungeonAdventure
                     break;
                 case 19:
                     proceedSound.Play();
-                    displayLabel.Text = "The Key breaks after the door unlocks, you enter through the door";
+                    displayLabel.Text = "The Key breaks after the door unlocks, you enter through the door"; // reason for the key to be gone
                     ContinueScreen();
                     break;
                 case 20:
@@ -353,7 +361,7 @@ namespace DungeonAdventure
                     proceedSound.Play();
                     displayLabel.Text = "You find a riddle on the wall\n\n" +
                         "I am the weapon that you should use, nothing compares to how reliable and consistant I am. What am I?\nWrong Choice will result in DEATH!";
-                    Button2Enabled(true);
+                    Button2Enabled(true); //  Not really happy with the riddle itself, but it allows you to eliminate both the health potion and dart with process of elimination
                     Button3Enabled(true);
                     Button4Enabled(true);
                     choice1Label.Text = "Sword (????)";
@@ -365,7 +373,7 @@ namespace DungeonAdventure
                     heartSound.Play();
                     ContinueScreen();
                     displayLabel.Text = "You chose right, the stick is the ultimate weapon, I fear you may not be able to succeed if you lack " +
-                        "that item\n\n+5 HP";
+                        "that item\n\n+5 HP"; // This isnt really essential in order to win, is just a nice bonus thing and can hint towards the stick being important
                     break;
                 case 24:
                     displayLabel.Text = "A Very strong guard spots you, what do you do?";
@@ -395,28 +403,22 @@ namespace DungeonAdventure
                     if (chance <= 25)
                     {
                         health -= 3;
-                        displayLabel.Text += "\n\n-3 HP (25% Chance)";
-                    } else
+                        displayLabel.Text += "\n\n-3 HP (25% Chance)"; // 25% chance to take 3 damage, 75% chance to take 10 damage. I think you might be able to 
+                    } else                                              // get 10 hearts if you do things near perfectly but you cant get the stick so it doesnt really matter
                     {
                         health -= 10;
                         displayLabel.Text += "\n\n-10 HP (75% Chance)";
                     }
-
-                    if (health <= 0)
-                    {
-                        
-                    }
                     break;
-
                 case 26:
                     proceedSound.Play();
-                    displayLabel.Text = "The Guard gets scared and runs away...?";
+                    displayLabel.Text = "The Guard gets scared and runs away...?"; // Foreshadows that somethings up with the stick
                     ContinueScreen();
                     break;
                 case 28:
                     displayLabel.Text = "You go to use the poison dart but it bounces off the guards armour and hits you... good job?\n\nGAME OVER\nTry Again?";
-                    hurtSound.Play();
-                    ContinueScreen();
+                    hurtSound.Play(); // I feel bad for having the poison dart end so badly, but this game punishes you for using common sense and choosing
+                    ContinueScreen(); // this instead of a literal stick
                     Button2Enabled(true);
                     choice1Label.Text = "Try Again";
                     choice2Label.Text = "Quit";
@@ -438,24 +440,24 @@ namespace DungeonAdventure
                     }
                     choice1Label.Text = "Use Sword";
                     choice2Label.Text = "Run";
-                    choice3Label.Text = "Use Stick";
+                    choice3Label.Text = "Use Stick"; // Stick is the only thing that matters
                     choice4Label.Text = "Poison Dart";
                     break;
                     case 31:
                     ContinueScreen();
-                    displayLabel.Text = "You used the stick on the guard and they are instantly defeated.";
+                    displayLabel.Text = "You used the stick on the guard and they are instantly defeated."; // makes sense
                     stick = false;
                     break;
                 case 32:
                     ContinueScreen();
-                    displayLabel.Text = "You tried to that but it wasn't enough, the guard got you.\n\nGAME OVER\n\nTry Again?";
+                    displayLabel.Text = "You tried to that but it wasn't enough, the guard got you.\n\nGAME OVER\n\nTry Again?"; 
                     healthLabel.Text = "x 0";
                     hurtSound.Play();
                     break;
                 case 34: // Win Screen
                     heartSound.Play();
                     ContinueScreen();
-                    displayLabel.Text = "You Win! You managed to get the treasure from the dungeon! Thank you for playing!\n\nPlay Again?";
+                    displayLabel.Text = "You Win! You managed to get the treasure from the dungeon! Thank you for playing!\n\nPlay Again?"; // only get here if the stick is used
                     choice1Label.Text = "Play Again";
                     choice2Label.Text = "Quit";
                     Button2Enabled(true);
@@ -466,7 +468,7 @@ namespace DungeonAdventure
                 case 98:
                     hurtSound.Play();
                     ContinueScreen();
-                    displayLabel.Text = "You chose wrong, what could the right answer be?\n\nGAME OVER\nTry Again?";
+                    displayLabel.Text = "You chose wrong, what could the right answer be?\n\nGAME OVER\nTry Again?"; // Used to have a hint towards the stick but later changed it
                     choice1Label.Text = "Try Again";
                     choice2Label.Text = "Quit";
                     healthLabel.Text = "x 0";
@@ -478,13 +480,13 @@ namespace DungeonAdventure
                     hurtSound.Play();
                     ContinueScreen();
                     Button2Enabled(true);
-                    displayLabel.Text = "You ran out of Health.\n\nGAME OVER\nTry Again?";
+                    displayLabel.Text = "You ran out of Health.\n\nGAME OVER\nTry Again?"; // Get here when you run out of health normally
                     choice1Label.Text = "Try Again";
                     choice2Label.Text = "Quit";
                     break;
             }
 
-            UpdateStats(); // Is always called no matter what
+            UpdateStats(); // Is always called no matter what to update the stats
         }
 
 
@@ -501,9 +503,9 @@ namespace DungeonAdventure
             prevGoldenKey = goldenKey;
             prevDart = dart;
             prevStick = stick;
-            prevPurchaseHeal = purchaseHeal;
+            prevPurchaseHeal = purchaseHeal; // Saves your current stats into the previous ones before they are updated
 
-            if (health == 0)
+            if (health == 0) // Confirm that a game over happens
             {
                 healthLabel.Text = $"x 0";
                 page = 99;
@@ -562,7 +564,7 @@ namespace DungeonAdventure
             }
             else if (page == 12)
             {
-                coins -= 5;
+                coins -= 5; // Updates happen here because the switch statement would call the stat updates twice
                 purchaseHeal = true;
                 health++;
                 Button1Enabled(false);
@@ -608,7 +610,7 @@ namespace DungeonAdventure
             }
             else if (page == 28 || page == 32 || page == 34 || page == 98 || page == 99 )
             {
-                ResetVariables();
+                ResetVariables(); //  All game over scenarios
             }
 
 
@@ -763,7 +765,7 @@ namespace DungeonAdventure
 
         private void prevPageButton_Click(object sender, EventArgs e)
         {
-            if (prevPage != 0)
+            if (prevPage != 0) // allows you to go back a page
             {
                 page = prevPage;
                 health = prevHealth;
@@ -779,8 +781,8 @@ namespace DungeonAdventure
 
         }
 
-        public void EnableDebug()
-        {
+        public void EnableDebug() // code for enabling the debug function, I have it password protected so it can only be used by those who check the code
+        {                         // after they already played
             prevPageButton.Visible = true;
             debugImput.Visible = false;
             pageLabel.Visible = true;
@@ -802,7 +804,7 @@ namespace DungeonAdventure
                 }
 
             }
-            catch
+            catch // Don't know when this would ever get called, but just to help prevent a crash
             {
                 debugLabel.Text = "Error";
             }
